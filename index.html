@@ -85,6 +85,31 @@ details.card summary{cursor:pointer;font-weight:700}
 .bub.in{background:#ffffff0f;align-self:flex-start;border-top-right-radius:4px}.bub.out{background:#3a0d12;align-self:flex-end;border-top-left-radius:4px}
 .lb{display:block;font-size:12px;color:var(--mute);margin-top:8px}
 .sheet .in{max-height:86vh}
+textarea{width:100%;background:#0d0e14;border:1px solid var(--line);color:var(--text);border-radius:12px;padding:12px;font:inherit;margin:8px 0;resize:vertical}
+.sheet .in{border-radius:26px 26px 0 0;background:linear-gradient(#181924,#101119);border:1px solid #ffffff14;border-bottom:0;box-shadow:0 -20px 60px #000a;padding-top:24px;position:relative}
+.sheet .in::before{content:"";position:absolute;top:9px;left:50%;width:42px;height:4px;margin-left:-21px;border-radius:2px;background:#ffffff30}
+.card{background:linear-gradient(145deg,#1b1c27,#13141d);border:1px solid #ffffff12;border-radius:18px;padding:14px;margin:10px 0;box-shadow:0 6px 18px #0006;animation:up .4s ease both}
+.ch{display:flex;gap:12px;align-items:center}.cb{flex:1;min-width:0}.cb b{font-size:15px}
+.av{width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,#e11d2e,#7a0b14);display:flex;align-items:center;justify-content:center;font-size:22px;flex:none;box-shadow:0 4px 12px #e11d2e55}
+.sub{color:var(--mute);font-size:12.5px;margin-top:3px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.chip{display:inline-block;padding:3px 10px;border-radius:99px;border:1px solid #ffffff22;background:#ffffff0a;font-size:12px;color:#d6d7e0}
+.chip.g{color:#22c55e;border-color:#22c55e55;background:#22c55e14}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:6px 0 10px;scrollbar-width:none}.chips::-webkit-scrollbar{display:none}
+.btnc{cursor:pointer;font:inherit;font-size:13px;white-space:nowrap}.btnc.on{background:var(--red);border-color:var(--red);color:#fff}
+.acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.act{flex:1;min-width:90px;text-align:center;text-decoration:none;color:var(--text);background:#ffffff0f;border:1px solid #ffffff1a;border-radius:12px;padding:10px 8px;font:inherit;font-size:13px;cursor:pointer;transition:.2s}.act:active{transform:scale(.97)}.dg{color:#ff6a5e;border-color:#ff6a5e55}
+.srch{border-radius:99px;padding:12px 16px}.empty{text-align:center;color:var(--mute);padding:24px 0}
+details.card summary{cursor:pointer;font-weight:700;list-style:none;display:flex;justify-content:space-between;gap:10px}details.card summary::-webkit-details-marker{display:none}details.card summary::after{content:"⌄";color:var(--red);transition:.2s}details.card[open] summary::after{transform:rotate(180deg)}
+.it{background:linear-gradient(145deg,#1b1c27,#13141d);border:1px solid #ffffff12;border-radius:18px;padding:14px;margin:10px 0;transition:.3s}.it.dn{border-color:#22c55e66;box-shadow:0 0 18px #22c55e22}
+.ith{display:flex;align-items:center;gap:10px}.itn{flex:1;min-width:0}.itn b{display:block}.itn small{color:var(--mute);font-size:12px}
+.tk{width:26px;height:26px;border-radius:50%;border:2px solid #ffffff30;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;flex:none;transition:.3s}.tk.on{background:#22c55e;border-color:#22c55e;color:#fff;box-shadow:0 0 12px #22c55e88}
+.bar{height:6px;border-radius:3px;background:#ffffff14;margin:12px 0 10px;overflow:hidden}.bar i{display:block;height:100%;border-radius:3px;transition:width .6s}
+.itf{display:flex;gap:8px;justify-content:flex-end}.itf .x{margin:0;padding:7px 12px;font-size:13px}.x.ok{background:var(--red);border-color:var(--red);color:#fff}
+.chat{max-height:46vh;overflow:auto;display:flex;flex-direction:column;gap:8px;padding:4px 2px 8px}
+.bub{max-width:82%;padding:9px 13px;border-radius:16px;font-size:14px;line-height:1.5;word-break:break-word}.bub small{display:block;font-size:11px;opacity:.7;margin-bottom:2px}
+.bub.in{align-self:flex-start;background:#23243a;border-top-right-radius:4px}.bub.out{align-self:flex-end;background:linear-gradient(135deg,#e11d2e,#a30f1d);border-top-left-radius:4px}
+.cin{margin-top:6px}.crow{display:flex;gap:8px;align-items:center}.crow input{margin:0}.crow .btn{width:56px;flex:none;padding:12px 0}
 </style>
 </head>
 <body>
@@ -187,9 +212,14 @@ var CONFIG={
   {n:'محل فلاتر الربيعي',area:'الربيعي',spec:['فلاتر','زيوت'],phone:'',map:'',hours:'٩ص - ٩م',demo:true},
   {n:'قطع غيار الشورجة',area:'الشورجة',spec:['فحمات','قطع متنوعة'],phone:'',map:'',hours:'٩ص - ٧م',demo:true}
  ],
+ chat:{firebaseUrl:''},   // رابط قاعدة Firebase للدردشة الحية، مثل https://xxxx-default-rtdb.firebaseio.com
  chatLink:'',      // رابط مجموعة واتساب أو تلكرام لسواق الكورولا (اتركه فارغ إذا ما جاهز)
  partnerLink:'',   // رابط واتساب للتواصل مع أصحاب الورش الراغبين بالانضمام
  partnerText:'صاحب ورشة؟ انضم كشريك موثّق',
+ // استقبال أسئلة المستخدمين (فعّل واحد أو الاثنين):
+ // whatsapp: رقمك بصيغة دولية بدون + مثل 9647701234567 (يفتح واتساب ورسالة جاهزة)
+ // formUrl: رابط نموذج Formspree (الرسالة توصلك على الإيميل مباشرة)
+ inbox:{whatsapp:'',formUrl:''},
  contactLink:'',   // رابط للتواصل معك (ملاحظات واقتراحات)
  faq:[
   {q:'كل كم أبدّل الدهن؟',a:'الافتراضي بالتطبيق كل {oil} كم، وتكدر تعدله من (المزيد). الأفضل تراجع دليل سيارتك.'},
@@ -221,7 +251,7 @@ function V(i){return $(i).value}
 /* ---------- الحالة والحفظ التلقائي ---------- */
 var S={cur:0,lastKm:0,lastDate:'—',log:[],it:{},iv:{}};
 try{var sv=JSON.parse(localStorage.getItem('cc')||'null');if(sv)for(var k in sv)S[k]=sv[k]}catch(e){}
-S.it=S.it||{};S.iv=S.iv||{};S.log=S.log||[];
+S.it=S.it||{};S.iv=S.iv||{};S.dn=S.dn||{};S.log=S.log||[];
 function save(){try{localStorage.setItem('cc',JSON.stringify(S))}catch(e){}}
 var I=CONFIG.intervals,cf=S.cfg||{};
 var OIL=cf.o||I.oil,SVC=cf.s||I.service,PERDAY=cf.p||I.perDay,WARN=cf.w!=null?cf.w:I.warnBefore;
@@ -253,10 +283,10 @@ function alertBar(){var r=oilLeft(),h='';
  $('alert').innerHTML=h}
 function badge(){var n=notes().length,b=$('bd');b.textContent=n;b.style.display=n?'block':'none'}
 function renderItems(){
- var L=items().map(function(x){return{x:x,l:left(x)}}).sort(function(a,b){return a.l-b.l});
- $('items').innerHTML=L.map(function(o){var x=o.x,iv=ivl(x),l=o.l,p=Math.max(0,Math.min(1,(iv-l)/iv)),
+ var L=items().map(function(x){var l=left(x),d=S.dn[x.n];if(d&&l<=0)d=null;return{x:x,l:l,d:d}}).sort(function(a,b){return a.l-b.l});
+ $('items').innerHTML=L.map(function(o){var x=o.x,iv=ivl(x),l=o.l,d=o.d,p=Math.max(0,Math.min(1,(iv-l)/iv)),
   col=l<=0?'#ef4444':l<=WARN*2?'#f5a524':'#22c55e',st=l<=0?'متأخر '+fmt(-l):'باقي '+fmt(l);
-  return '<div class="it"><div class="ith"><b>'+esc(x.n)+'</b><span class="chip" style="color:'+col+';border-color:'+col+'">'+st+' كم</span></div><div class="bar"><i style="width:'+Math.round(p*100)+'%;background:'+col+'"></i></div><div class="itf"><small>كل '+fmt(iv)+' كم</small><span><button class="x" data-e="'+esc(x.n)+'" aria-label="تعديل الفترة">✏️</button><button class="x ok" data-d="'+esc(x.n)+'">تم ✓</button></span></div></div>'}).join('')}
+  return '<div class="it'+(d?' dn':'')+'"><div class="ith"><div class="tk'+(d?' on':'')+'">'+(d?'✓':'')+'</div><div class="itn"><b>'+esc(x.n)+'</b><small>'+(d?'تمت عند '+fmt(d.km)+' كم • '+esc(d.d):'كل '+fmt(iv)+' كم')+'</small></div><span class="chip" style="color:'+col+';border-color:'+col+'">'+st+' كم</span></div><div class="bar"><i style="width:'+Math.round(p*100)+'%;background:'+col+'"></i></div><div class="itf"><button class="x" data-e="'+esc(x.n)+'">✏️ الفترة</button>'+(d?'<button class="x" data-u="'+esc(x.n)+'">↩ تراجع</button>':'')+'<button class="x ok" data-d="'+esc(x.n)+'">'+(d?'تسجيل مرة ثانية':'تم')+'</button></div></div>'}).join('')}
 function render(){
  var oil=Math.max(0,oilLeft()),sv=Math.max(0,S.lastKm+SVC-S.cur);
  $('oilKm').textContent=fmt(oil);$('svcKm').textContent=fmt(sv);$('ringKm').textContent=fmt(oil);
@@ -265,11 +295,12 @@ function render(){
  $('last').textContent='✅ تمت آخر صيانة في: '+S.lastDate+' • عند '+fmt(S.lastKm)+' كم';
  badge();alertBar();renderItems()}
 $('items').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;
- var nm=b.dataset.e||b.dataset.d,x=CONFIG.items.filter(function(i){return i.n==nm})[0];if(!x)return;
+ var nm=b.dataset.e||b.dataset.d||b.dataset.u,x=CONFIG.items.filter(function(i){return i.n==nm})[0];if(!x)return;
+ if(b.dataset.u){var dn=S.dn[x.n];if(dn){if(dn.prev==null)delete S.it[x.n];else S.it[x.n]=dn.prev;delete S.dn[x.n];save();render()}return}
  if(b.dataset.e){var n=parseInt(prompt('كل كم كم تتكرر صيانة: '+x.n+'؟',ivl(x)),10);if(n>0){S.iv[x.n]=n;save();render()}return}
  var v=prompt('تمت صيانة '+x.n+' عند أي عداد؟ (اتركه للعداد الحالي)',S.cur);if(v===null)return;v=parseInt(v,10);
  if(isNaN(v)||v<0||v>S.cur){window.alert('الرقم لازم يكون أقل من العداد الحالي أو يساويه');return}
- S.it[x.n]=v;S.log.push({d:today(),km:v,t:x.n});save();render()});
+ S.dn[x.n]={km:v,d:today(),prev:S.it[x.n]};S.it[x.n]=v;S.log.push({d:today(),km:v,t:x.n});save();render()});
 $('upd').onclick=function(){var v=parseInt(V('newKm'),10),er=$('err');
  if(isNaN(v)){er.textContent='أدخل رقماً صحيحاً';return}
  if(v<S.cur){er.textContent='القراءة أقل من القراءة الحالية ('+fmt(S.cur)+')';return}
@@ -277,8 +308,8 @@ $('upd').onclick=function(){var v=parseInt(V('newKm'),10),er=$('err');
  er.textContent='';S.cur=v;S.lastUpd=Date.now();$('newKm').value='';save();render();dailyPush()};
 
 /* ---------- النوافذ ---------- */
-function openS(t,h){$('sTitle').textContent=t;$('sBody').innerHTML=h;$('sheet').classList.add('on');$('sheet').scrollTop=0}
-function shut(){$('sheet').classList.remove('on')}
+function openS(t,h){clearInterval(window.__ct);$('sTitle').textContent=t;$('sBody').innerHTML=h;$('sheet').classList.add('on');$('sheet').scrollTop=0}
+function shut(){clearInterval(window.__ct);$('sheet').classList.remove('on')}
 $('close').onclick=shut;$('sheet').onclick=function(e){if(e.target===$('sheet'))shut()};
 document.addEventListener('keydown',function(e){if(e.key=='Escape')shut()});
 function waLink(p){var d=String(p||'').replace(/\D/g,'');if(!d)return '';if(d[0]=='0')d='964'+d.slice(1);return 'https://wa.me/'+d}
@@ -305,10 +336,34 @@ function diagSheet(){var k=Object.keys(CONFIG.diag);
  openS('تشخيص الأعطال','<p class="sub">اختر العَرَض اللي تلاحظه</p><div class="chips" id="dc">'+k.map(function(x,i){return '<button class="chip btnc" data-i="'+i+'">'+esc(x)+'</button>'}).join('')+'</div><div id="dr"></div><p class="sub">هذا إرشاد أولي ولا يغني عن فحص الورشة.</p>');
  $('dc').onclick=function(e){var b=e.target.closest('button');if(!b)return;$('dc').querySelectorAll('button').forEach(function(x){x.classList.toggle('on',x===b)});
   $('dr').innerHTML='<div class="card"><b>'+esc(k[b.dataset.i])+'</b><div class="sub" style="margin-top:6px">'+esc(CONFIG.diag[k[b.dataset.i]])+'</div></div>'}}
-function faqSheet(){openS('الاستفسارات',CONFIG.faq.map(function(f){return '<details class="card"><summary>'+esc(f.q)+'</summary><div class="sub" style="margin-top:8px">'+esc(f.a.replace('{oil}',fmt(OIL)))+'</div></details>'}).join(''))}
+function faqSheet(){openS('الاستفسارات','<button class="btn" id="askgo" style="margin-bottom:10px">✍️ اسأل سؤالك</button>'+CONFIG.faq.map(function(f){return '<details class="card"><summary>'+esc(f.q)+'</summary><div class="sub" style="margin-top:8px">'+esc(f.a.replace('{oil}',fmt(OIL)))+'</div></details>'}).join(''))}
+function askSheet(){openS('اسأل سؤالك','<p class="sub">اكتب سؤالك وراح نجاوبك بأقرب وقت.</p><textarea id="aq" maxlength="500" rows="4" placeholder="اكتب سؤالك أو ملاحظتك هنا"></textarea><input id="an" maxlength="40" placeholder="اسمك (اختياري)"><input id="ac" maxlength="40" placeholder="رقمك أو طريقة التواصل ليوصلك الجواب (اختياري)"><div class="err" id="ae"></div><button class="btn" id="askb">إرسال</button>')}
+function sendAsk(){var q=V('aq').trim(),er=$('ae');if(q.length<3){er.textContent='اكتب سؤالك أول';return}
+ var nm=V('an').trim(),ct=V('ac').trim(),ib=CONFIG.inbox||{},
+ msg='استفسار من تطبيق كاردكتور كورولا\n'+q+'\n\nالاسم: '+(nm||'—')+'\nللتواصل: '+(ct||'—')+'\nالسيارة: '+carName()+' • العداد: '+fmt(S.cur);
+ if(ib.formUrl){var bt=$('askb');bt.disabled=true;bt.textContent='جاري الإرسال…';
+  fetch(ib.formUrl,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({message:msg,name:nm,contact:ct,question:q})})
+  .then(function(r){if(!r.ok)throw 0;openS('وصلنا سؤالك ✅','<div class="card">شكراً '+esc(nm)+'، راح نجاوبك بأقرب وقت.</div>')})
+  .catch(function(){bt.disabled=false;bt.textContent='إرسال';er.textContent='تعذّر الإرسال، تأكد من الإنترنت وجرّب مرة ثانية'})}
+ else if(ib.whatsapp){window.open('https://wa.me/'+String(ib.whatsapp).replace(/\D/g,'')+'?text='+encodeURIComponent(msg),'_blank')}
+ else{er.textContent='استقبال الأسئلة غير مفعّل بعد'}}
+function FB(){return String((CONFIG.chat||{}).firebaseUrl||'').replace(/\/+$/,'')}
+function hm(t){var d=new Date(t);return pad(d.getHours())+':'+pad(d.getMinutes())}
 function chatSheet(){
- openS('ملتقى سواق كورولا','<div class="chat"><div class="bub in"><small>أبو حيدر</small>شنو أفضل دهن للكورولا؟</div><div class="bub out"><small>سجاد</small>اللي يوصي بيه دليل السيارة، وبدّله بوقته 👌</div><div class="bub in"><small>علي</small>وين أحسن ورشة بالكرادة؟</div></div><p class="sub">محادثة مثال للشكل فقط.</p>'+
- (CONFIG.chatLink?'<a class="btn" style="display:block;text-align:center;text-decoration:none" target="_blank" rel="noopener" href="'+esc(CONFIG.chatLink)+'">💬 انضم لمجموعة السواق</a>':'<div class="card"><b>🚧 المجموعة تتفعّل قريباً</b><div class="sub">راح نضيف رابط مجموعة سواق الكورولا هنا.</div></div>'))}
+ if(!FB()){openS('ملتقى سواق كورولا','<div class="card"><b>🚧 الدردشة تتفعّل قريباً</b><div class="sub">راح تكدر تسولف وتسأل سواق الكورولا هنا.</div></div>'+(CONFIG.chatLink?'<a class="btn" style="display:block;text-align:center;text-decoration:none" target="_blank" rel="noopener" href="'+esc(CONFIG.chatLink)+'">💬 انضم لمجموعة السواق</a>':''));return}
+ openS('ملتقى سواق كورولا','<div class="chat" id="cm"><div class="empty">جاري التحميل…</div></div><div class="cin"><input id="cn" maxlength="20" placeholder="اسمك" value="'+esc(S.nick||S.name||'')+'"><div class="crow"><input id="ct" maxlength="200" placeholder="اكتب رسالتك…"><button class="btn" id="cs2">➤</button></div></div><p class="sub">احترم الجميع ولا تنشر أرقام هواتف أو معلومات شخصية.</p>');
+ var first=true;
+ function load(){fetch(FB()+'/chat.json?orderBy=%22t%22&limitToLast=50').then(function(r){return r.json()}).then(function(d){var el=$('cm');if(!el)return;
+   if(d&&d.error){el.innerHTML='<div class="empty">إعداد قاعدة البيانات ناقص، راجع قواعد Firebase</div>';return}
+   var L=Object.keys(d||{}).map(function(k){return d[k]}).filter(function(m){return m&&m.m}).sort(function(a,b){return a.t-b.t}),
+   nb=first||el.scrollHeight-el.scrollTop-el.clientHeight<60;
+   el.innerHTML=L.map(function(m){var me=m.u&&m.u==S.uid;return '<div class="bub '+(me?'out':'in')+'"><small>'+esc(m.n)+' • '+hm(m.t)+'</small>'+esc(m.m)+'</div>'}).join('')||'<div class="empty">كون أول واحد يكتب 👋</div>';
+   if(nb)el.scrollTop=el.scrollHeight;first=false}).catch(function(){var el=$('cm');if(el&&first)el.innerHTML='<div class="empty">تعذّر تحميل الرسائل، تأكد من الإنترنت</div>'})}
+ function send(){var n=V('cn').trim()||'سائق',m=V('ct').trim();if(!m||Date.now()-(window.__ls||0)<2000)return;window.__ls=Date.now();
+  S.nick=n;if(!S.uid)S.uid=Math.random().toString(36).slice(2)+Date.now().toString(36);save();$('ct').value='';
+  fetch(FB()+'/chat.json',{method:'POST',body:JSON.stringify({n:n.slice(0,20),m:m.slice(0,200),u:S.uid,t:{'.sv':'timestamp'}})}).then(load).catch(function(){})}
+ $('cs2').onclick=send;$('ct').onkeydown=function(e){if(e.key=='Enter')send()};
+ load();window.__ct=setInterval(load,4000)}
 function mapSheet(){var u=function(q){return 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q+' '+CONFIG.city)};
  openS('الخريطة','<p class="sub">افتح خرائط Google للبحث قرب موقعك:</p><div class="acts" style="flex-direction:column"><a class="act" target="_blank" rel="noopener" href="'+u('ورش صيانة سيارات')+'">🔧 ورش صيانة سيارات</a><a class="act" target="_blank" rel="noopener" href="'+u('محلات قطع غيار تويوتا')+'">⚙️ قطع غيار تويوتا</a><a class="act" target="_blank" rel="noopener" href="'+u('تبديل دهن سيارات')+'">🛢️ تبديل دهن</a><a class="act" target="_blank" rel="noopener" href="'+u('محطة وقود')+'">⛽ محطات وقود</a></div>')}
 function notifSheet(){var a=notes();
@@ -318,7 +373,7 @@ function carSheet(){var c=S.car||{};
  $('cs').onclick=function(){S.car={y:V('cy'),p:V('cp')};save();shut()}}
 function moreSheet(){
  openS('المزيد','<div class="card"><b>⚙️ إعدادات التنبيه</b><label class="lb">فترة تبديل الدهن (كم)</label><input id="so" type="number" value="'+OIL+'"><label class="lb">الصيانة الدورية (كم)</label><input id="ss" type="number" value="'+SVC+'"><label class="lb">متوسط المشي اليومي (كم)</label><input id="sp" type="number" value="'+PERDAY+'"><label class="lb">ينبّهك قبل الموعد بـ (كم)</label><input id="sw" type="number" value="'+WARN+'"><div class="err" id="se"></div><button class="btn" id="sb">حفظ الإعدادات</button></div>'+
- '<div class="acts mb"><button class="act" id="cp2">🚘 تغيير السيارة والعداد</button><button class="act" id="nt">🔔 إشعارات الجهاز</button><button class="act" id="ics">📅 تذكير أسبوعي</button><button class="act" id="sh">📤 شارك التطبيق</button>'+(CONFIG.contactLink?'<a class="act" target="_blank" rel="noopener" href="'+esc(CONFIG.contactLink)+'">💡 ملاحظة أو اقتراح</a>':'')+'<button class="act dg" id="rs">🗑️ مسح بياناتي</button></div><p class="sub" style="text-align:center">كاردكتور كورولا • النسخة '+esc(CONFIG.version)+'<br>الأرقام استرشادية، راجع دليل سيارتك</p>')}
+ '<div class="acts mb"><button class="act" id="cp2">🚘 تغيير السيارة والعداد</button><button class="act" id="nt">🔔 إشعارات الجهاز</button><button class="act" id="ics">📅 تذكير أسبوعي</button><button class="act" id="sh">📤 شارك التطبيق</button>'+'<button class="act" id="askgo">💡 ملاحظة أو اقتراح</button>'+'<button class="act dg" id="rs">🗑️ مسح بياناتي</button></div><p class="sub" style="text-align:center">كاردكتور كورولا • النسخة '+esc(CONFIG.version)+'<br>الأرقام استرشادية، راجع دليل سيارتك</p>')}
 $('sBody').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var id=b.id;
  if(id=='sb'){var o=+V('so'),s=+V('ss'),p=+V('sp'),w=+V('sw');if(!(o>0&&s>0&&p>0&&w>=0)){$('se').textContent='أدخل أرقاماً صحيحة';return}OIL=o;SVC=s;PERDAY=p;WARN=w;S.cfg={o:o,s:s,p:p,w:w};save();render();shut()}
  else if(id=='cp2'){shut();showWel()}
@@ -326,6 +381,8 @@ $('sBody').addEventListener('click',function(e){var b=e.target.closest('button')
  else if(id=='sh'){if(navigator.share)navigator.share({title:'كاردكتور كورولا',url:location.href}).catch(function(){});else if(navigator.clipboard)navigator.clipboard.writeText(location.href).then(function(){b.textContent='✅ تم نسخ الرابط'}).catch(function(){})}
  else if(id=='nt'){if(!window.Notification){b.textContent='غير مدعوم هنا';return}Notification.requestPermission().then(function(p){b.textContent=p=='granted'?'✅ تم التفعيل':'تم رفض الإذن'})}
  else if(id=='rs'){if(confirm('تمسح كل بياناتك من هذا الجهاز؟')){try{localStorage.removeItem('cc')}catch(x){}location.reload()}}
+ else if(id=='askgo')askSheet();
+ else if(id=='askb')sendAsk();
  else if(id=='ckb'){var v=parseInt(V('ck'),10),er=$('cke');if(isNaN(v)||v<S.cur){er.textContent='القراءة لازم تكون '+fmt(S.cur)+' أو أكثر';return}S.cur=v;S.lastUpd=Date.now();save();render();shut()}});
 document.querySelectorAll('.tile').forEach(function(b){b.onclick=function(){var k=b.dataset.k;
  if(k=='log')logSheet();else if(k=='diag')diagSheet();else if(k=='shops')listSheet('الورش والمراكز',CONFIG.shops,'🔧');else if(k=='parts')listSheet('قطع الغيار',CONFIG.parts,'⚙️');else if(k=='chat')chatSheet();else faqSheet()}});
@@ -360,7 +417,7 @@ $('wgo').onclick=function(){var c=parseInt(V('wc'),10),l=parseInt(V('wl'),10),er
  if(l>c){er.textContent='عداد آخر تبديل لازم يكون أقل من العداد الحالي أو يساويه';return}
  var first=!S.name,d=V('wd'),ds=d?d.replace(/-/g,'/'):'—';
  S.name=V('wn').trim();S.model=W.m;S.fuel=W.f;S.cur=c;
- if(first){S.lastKm=l;S.lastDate=ds;S.log=[{d:ds,km:l,t:'تبديل دهن'}];S.it={}}else if(l!=S.lastKm)setLast(l,ds);
+ if(first){S.lastKm=l;S.lastDate=ds;S.log=[{d:ds,km:l,t:'تبديل دهن'}];S.it={};S.dn={}}else if(l!=S.lastKm)setLast(l,ds);
  S.lastUpd=Date.now();delete S.draft;save();applyProfile();render();$('wel').style.display='none';window.scrollTo(0,0);if(first)dailyPush()};
 
 /* ---------- التشغيل ---------- */
