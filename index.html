@@ -1,4 +1,4 @@
-ff<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8">
@@ -110,6 +110,14 @@ details.card summary{cursor:pointer;font-weight:700;list-style:none;display:flex
 .bub{max-width:82%;padding:9px 13px;border-radius:16px;font-size:14px;line-height:1.5;word-break:break-word}.bub small{display:block;font-size:11px;opacity:.7;margin-bottom:2px}
 .bub.in{align-self:flex-start;background:#23243a;border-top-right-radius:4px}.bub.out{align-self:flex-end;background:linear-gradient(135deg,#e11d2e,#a30f1d);border-top-left-radius:4px}
 .cin{margin-top:6px}.crow{display:flex;gap:8px;align-items:center}.crow input{margin:0}.crow .btn{width:56px;flex:none;padding:12px 0}
+.tile.wide{grid-column:1/-1;display:flex;align-items:center;gap:12px;text-align:right;padding:14px 16px;background:linear-gradient(135deg,#2a0d12,#14151d);border-color:#e11d2e66}.tile.wide i{display:inline-block;font-size:32px;margin:0}.tile.wide span{flex:1}.tile.wide b,.tile.wide small{display:block}
+.mk{cursor:pointer}.mth{width:88px;height:68px;border-radius:12px;overflow:hidden;background:#ffffff0d;display:flex;align-items:center;justify-content:center;font-size:26px;flex:none}.mth img{width:100%;height:100%;object-fit:cover}
+.mp{color:#22c55e;font-weight:800;font-size:16px;margin-top:2px}
+.mph{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;margin-bottom:10px}.mph img{height:210px;max-width:92%;border-radius:14px;object-fit:cover;scroll-snap-align:start;flex:none}
+.lb{display:block;text-align:right;font-weight:700;font-size:13px;margin:12px 0 2px}
+.flg{background:none;border:0;color:#ffffff77;font:inherit;font-size:11px;margin-inline-start:8px;cursor:pointer;padding:0}
+.gal{columns:2;column-gap:10px;margin:12px 0}.gal figure{margin:0 0 10px;break-inside:avoid;border-radius:14px;overflow:hidden;background:#ffffff0a;cursor:zoom-in}.gal img{width:100%;display:block}.gal figcaption{font-size:12px;color:var(--mute);padding:6px 8px}
+.lbx{position:fixed;inset:0;z-index:40;background:#000e;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px;animation:up .25s ease both}.lbx img{max-width:100%;max-height:78vh;object-fit:contain;border-radius:12px}.lbx .lcap{color:#d6d7e0;margin-top:10px;font-size:14px;text-align:center}.lbx .lbc{position:absolute;top:calc(14px + env(safe-area-inset-top,0px));left:14px;background:#ffffff22;border:0;color:#fff;width:38px;height:38px;border-radius:50%;font-size:18px;cursor:pointer}
 </style>
 </head>
 <body>
@@ -128,6 +136,8 @@ details.card summary{cursor:pointer;font-weight:700;list-style:none;display:flex
   </div>
 
   <div class="grid">
+    <button class="tile wide" style="grid-column:span 2" data-k="market"><i>🏷️</i><span><b>سوق السيارات</b><small>بيع وشراء</small></span></button>
+    <button class="tile" data-k="acc"><i>✨</i><b>الكماليات</b><small>محلات وصور</small></button>
     <button class="tile" data-k="log"><i>📋</i><b>سجل الصيانة</b><small>كل مواعيدك هنا</small></button>
     <button class="tile" data-k="diag"><i>🔍</i><b>تشخيص الأعطال</b><small>اعرف المشكلة والحل</small></button>
     <button class="tile" data-k="shops"><i>🏭</i><b>الورش والمراكز</b><small>قائمة معتمدة</small></button>
@@ -212,10 +222,20 @@ var CONFIG={
   {n:'محل فلاتر الربيعي',area:'الربيعي',spec:['فلاتر','زيوت'],phone:'',map:'',hours:'٩ص - ٩م',demo:true},
   {n:'قطع غيار الشورجة',area:'الشورجة',spec:['فحمات','قطع متنوعة'],phone:'',map:'',hours:'٩ص - ٧م',demo:true}
  ],
- chat:{firebaseUrl:'https://console.firebase.google.com/project/alaa-fdaa2/database/alaa-fdaa2-default-rtdb/data/~2F'},   // رابط قاعدة Firebase للدردشة الحية، مثل https://xxxx-default-rtdb.firebaseio.com
+ chat:{firebaseUrl:''},   // رابط قاعدة Firebase للدردشة الحية، مثل https://xxxx-default-rtdb.firebaseio.com
  chatLink:'',      // رابط مجموعة واتساب أو تلكرام لسواق الكورولا (اتركه فارغ إذا ما جاهز)
  partnerLink:'',   // رابط واتساب للتواصل مع أصحاب الورش الراغبين بالانضمام
  partnerText:'صاحب ورشة؟ انضم كشريك موثّق',
+ // ===== الكماليات =====
+ // كل محل: n الاسم، a المنطقة، spec التخصص، ph الهاتف، hours الدوام، d وصف، tags أقسام، photos الصور
+ // الصور: ارفع الصورة على GitHub بجانب index.html واكتب اسمها هنا مثل 'acc1-1.jpg' (يفضل عرض 800 بكسل أو أقل)
+ // photos تقبل 'اسم.jpg' أو {u:'اسم.jpg',c:'وصف الصورة'}  — وامسح demo:true لما تحط محل حقيقي
+ accCats:['الكل','إضاءة','أغطية مقاعد','سجاد وأرضيات','كاميرات وحساسات','صوتيات وشاشات','جنوط وإطارات','عناية وتلميع'],
+ accessories:[
+  {n:'مركز النور للكماليات',a:'الكرادة',spec:'إضاءة وأغطية مقاعد',ph:'',hours:'10 ص - 10 م',d:'كماليات وإضافات لسيارات كورولا.',tags:['إضاءة','أغطية مقاعد'],photos:[],demo:true},
+  {n:'معرض الأناقة للسجاد والأغطية',a:'المنصور',spec:'سجاد وأرضيات',ph:'',hours:'9 ص - 9 م',d:'سجاد مخصص لموديلات كورولا.',tags:['سجاد وأرضيات','أغطية مقاعد'],photos:[],demo:true},
+  {n:'تك كار للصوتيات والكاميرات',a:'بغداد الجديدة',spec:'شاشات وكاميرات وحساسات',ph:'',hours:'10 ص - 8 م',d:'شاشات أندرويد وكاميرات خلفية وحساسات ركن.',tags:['صوتيات وشاشات','كاميرات وحساسات'],photos:[],demo:true}
+ ],
  // استقبال أسئلة المستخدمين (فعّل واحد أو الاثنين):
  // whatsapp: رقمك بصيغة دولية بدون + مثل 9647701234567 (يفتح واتساب ورسالة جاهزة)
  // formUrl: رابط نموذج Formspree (الرسالة توصلك على الإيميل مباشرة)
@@ -347,21 +367,21 @@ function sendAsk(){var q=V('aq').trim(),er=$('ae');if(q.length<3){er.textContent
   .catch(function(){bt.disabled=false;bt.textContent='إرسال';er.textContent='تعذّر الإرسال، تأكد من الإنترنت وجرّب مرة ثانية'})}
  else if(ib.whatsapp){window.open('https://wa.me/'+String(ib.whatsapp).replace(/\D/g,'')+'?text='+encodeURIComponent(msg),'_blank')}
  else{er.textContent='استقبال الأسئلة غير مفعّل بعد'}}
-function FB(){return String((CONFIG.chat||{}).firebaseUrl||'').replace(/\/+$/,'')}
+function FB(){return String((CONFIG.chat||{}).firebaseUrl||'').trim().replace(/\/+$/,'').replace(/\.json$/,'')}
 function hm(t){var d=new Date(t);return pad(d.getHours())+':'+pad(d.getMinutes())}
 function chatSheet(){
  if(!FB()){openS('ملتقى سواق كورولا','<div class="card"><b>🚧 الدردشة تتفعّل قريباً</b><div class="sub">راح تكدر تسولف وتسأل سواق الكورولا هنا.</div></div>'+(CONFIG.chatLink?'<a class="btn" style="display:block;text-align:center;text-decoration:none" target="_blank" rel="noopener" href="'+esc(CONFIG.chatLink)+'">💬 انضم لمجموعة السواق</a>':''));return}
- openS('ملتقى سواق كورولا','<div class="chat" id="cm"><div class="empty">جاري التحميل…</div></div><div class="cin"><input id="cn" maxlength="20" placeholder="اسمك" value="'+esc(S.nick||S.name||'')+'"><div class="crow"><input id="ct" maxlength="200" placeholder="اكتب رسالتك…"><button class="btn" id="cs2">➤</button></div></div><p class="sub">احترم الجميع ولا تنشر أرقام هواتف أو معلومات شخصية.</p>');
+ openS('ملتقى سواق كورولا','<div class="chat" id="cm"><div class="empty">جاري التحميل…</div></div><div class="err" id="ce"></div><div class="cin"><input id="cn" maxlength="20" placeholder="اسمك" value="'+esc(S.nick||S.name||'')+'"><div class="crow"><input id="ct" maxlength="200" placeholder="اكتب رسالتك…"><button class="btn" id="cs2">➤</button></div></div><p class="sub">احترم الجميع ولا تنشر أرقام هواتف أو معلومات شخصية.</p>');
  var first=true;
  function load(){fetch(FB()+'/chat.json?orderBy=%22t%22&limitToLast=50').then(function(r){return r.json()}).then(function(d){var el=$('cm');if(!el)return;
-   if(d&&d.error){el.innerHTML='<div class="empty">إعداد قاعدة البيانات ناقص، راجع قواعد Firebase</div>';return}
-   var L=Object.keys(d||{}).map(function(k){return d[k]}).filter(function(m){return m&&m.m}).sort(function(a,b){return a.t-b.t}),
+   if(d&&d.error){el.innerHTML='<div class="empty">خطأ من Firebase: '+esc(d.error)+'</div>';return}
+   var L=Object.keys(d||{}).map(function(k){var m=d[k];if(m&&typeof m=='object')m.id=k;return m}).filter(function(m){return m&&m.m}).sort(function(a,b){return a.t-b.t}),
    nb=first||el.scrollHeight-el.scrollTop-el.clientHeight<60;
-   el.innerHTML=L.map(function(m){var me=m.u&&m.u==S.uid;return '<div class="bub '+(me?'out':'in')+'"><small>'+esc(m.n)+' • '+hm(m.t)+'</small>'+esc(m.m)+'</div>'}).join('')||'<div class="empty">كون أول واحد يكتب 👋</div>';
-   if(nb)el.scrollTop=el.scrollHeight;first=false}).catch(function(){var el=$('cm');if(el&&first)el.innerHTML='<div class="empty">تعذّر تحميل الرسائل، تأكد من الإنترنت</div>'})}
+   el.innerHTML=L.map(function(m){var me=m.u&&m.u==S.uid;return '<div class="bub '+(me?'out':'in')+'"><small>'+esc(m.n)+' • '+hm(m.t)+'</small>'+esc(m.m)+(me?'':'<button class="flg" data-crep="'+esc(m.id)+'">⚑ تبليغ</button>')+'</div>'}).join('')||'<div class="empty">كون أول واحد يكتب 👋</div>';
+   if(nb)el.scrollTop=el.scrollHeight;first=false}).catch(function(){var el=$('cm');if(el&&first)el.innerHTML='<div class="empty">تعذّر الاتصال بقاعدة البيانات. تأكد من رابط firebaseUrl ومن الإنترنت</div>'})}
  function send(){var n=V('cn').trim()||'سائق',m=V('ct').trim();if(!m||Date.now()-(window.__ls||0)<2000)return;window.__ls=Date.now();
   S.nick=n;if(!S.uid)S.uid=Math.random().toString(36).slice(2)+Date.now().toString(36);save();$('ct').value='';
-  fetch(FB()+'/chat.json',{method:'POST',body:JSON.stringify({n:n.slice(0,20),m:m.slice(0,200),u:S.uid,t:{'.sv':'timestamp'}})}).then(load).catch(function(){})}
+  fetch(FB()+'/chat.json',{method:'POST',body:JSON.stringify({n:n.slice(0,20),m:m.slice(0,200),u:S.uid,t:{'.sv':'timestamp'}})}).then(function(r){return r.json().catch(function(){return {}}).then(function(j){var ce=$('ce');if(!ce)return;if(!r.ok||(j&&j.error)){ce.textContent='تعذّر الإرسال: '+((j&&j.error)||('خطأ '+r.status));$('ct').value=m;return}ce.textContent='';load()})}).catch(function(){var ce=$('ce');if(ce){ce.textContent='تعذّر الاتصال بقاعدة البيانات. تأكد من رابط firebaseUrl ومن الإنترنت';$('ct').value=m}})}
  $('cs2').onclick=send;$('ct').onkeydown=function(e){if(e.key=='Enter')send()};
  load();window.__ct=setInterval(load,4000)}
 function mapSheet(){var u=function(q){return 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q+' '+CONFIG.city)};
@@ -373,7 +393,7 @@ function carSheet(){var c=S.car||{};
  $('cs').onclick=function(){S.car={y:V('cy'),p:V('cp')};save();shut()}}
 function moreSheet(){
  openS('المزيد','<div class="card"><b>⚙️ إعدادات التنبيه</b><label class="lb">فترة تبديل الدهن (كم)</label><input id="so" type="number" value="'+OIL+'"><label class="lb">الصيانة الدورية (كم)</label><input id="ss" type="number" value="'+SVC+'"><label class="lb">متوسط المشي اليومي (كم)</label><input id="sp" type="number" value="'+PERDAY+'"><label class="lb">ينبّهك قبل الموعد بـ (كم)</label><input id="sw" type="number" value="'+WARN+'"><div class="err" id="se"></div><button class="btn" id="sb">حفظ الإعدادات</button></div>'+
- '<div class="acts mb"><button class="act" id="cp2">🚘 تغيير السيارة والعداد</button><button class="act" id="nt">🔔 إشعارات الجهاز</button><button class="act" id="ics">📅 تذكير أسبوعي</button><button class="act" id="sh">📤 شارك التطبيق</button>'+'<button class="act" id="askgo">💡 ملاحظة أو اقتراح</button>'+'<button class="act dg" id="rs">🗑️ مسح بياناتي</button></div><p class="sub" style="text-align:center">كاردكتور كورولا • النسخة '+esc(CONFIG.version)+'<br>الأرقام استرشادية، راجع دليل سيارتك</p>')}
+ '<div class="acts mb"><button class="act" id="cp2">🚘 تغيير السيارة والعداد</button><button class="act" id="nt">🔔 إشعارات الجهاز</button><button class="act" id="ics">📅 تذكير أسبوعي</button><button class="act" id="sh">📤 شارك التطبيق</button>'+'<button class="act" id="askgo">💡 ملاحظة أو اقتراح</button><a class="act" target="_blank" rel="noopener" href="privacy.html">🔒 سياسة الخصوصية</a>'+'<button class="act dg" id="rs">🗑️ مسح بياناتي</button></div><p class="sub" style="text-align:center">كاردكتور كورولا • النسخة '+esc(CONFIG.version)+'<br>الأرقام استرشادية، راجع دليل سيارتك</p>')}
 $('sBody').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var id=b.id;
  if(id=='sb'){var o=+V('so'),s=+V('ss'),p=+V('sp'),w=+V('sw');if(!(o>0&&s>0&&p>0&&w>=0)){$('se').textContent='أدخل أرقاماً صحيحة';return}OIL=o;SVC=s;PERDAY=p;WARN=w;S.cfg={o:o,s:s,p:p,w:w};save();render();shut()}
  else if(id=='cp2'){shut();showWel()}
@@ -384,8 +404,90 @@ $('sBody').addEventListener('click',function(e){var b=e.target.closest('button')
  else if(id=='askgo')askSheet();
  else if(id=='askb')sendAsk();
  else if(id=='ckb'){var v=parseInt(V('ck'),10),er=$('cke');if(isNaN(v)||v<S.cur){er.textContent='القراءة لازم تكون '+fmt(S.cur)+' أو أكثر';return}S.cur=v;S.lastUpd=Date.now();save();render();shut()}});
+/* ---------- سوق السيارات ---------- */
+var MK={f:'الكل',L:[]};
+function safeImg(s){return typeof s=='string'&&s.length<200000&&/^data:image\/jpeg;base64,[A-Za-z0-9+\/=]+$/.test(s)}
+function mkT(m){return 'تويوتا كورولا '+m.m+' '+m.y}
+function money(m){return fmt(m.p)+(m.c=='iqd'?' د.ع':' $')}
+function ago(t){var d=Math.floor((Date.now()-t)/864e5);return d<1?'اليوم':'قبل '+d+' يوم'}
+function shrink(file,max,q){return new Promise(function(res,rej){var r=new FileReader();r.onload=function(){var im=new Image();im.onload=function(){var s=Math.min(1,max/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*s);c.height=Math.round(im.height*s);c.getContext('2d').drawImage(im,0,0,c.width,c.height);res(c.toDataURL('image/jpeg',q))};im.onerror=rej;im.src=r.result};r.onerror=rej;r.readAsDataURL(file)})}
+function marketSheet(){
+ if(!FB()){openS('سوق السيارات','<div class="card"><b>🏷️ السوق يتفعّل قريباً</b><div class="sub">راح تكدر تعرض سيارتك للبيع أو تتصفح عروض غيرك هنا.</div></div>');return}
+ var hasMine=Object.keys(S.mine||{}).length;
+ openS('سوق السيارات','<button class="btn" id="mkadd">➕ اعرض سيارتك للبيع</button><div class="chips">'+['الكل','صالون','كروس'].map(function(x){return '<button class="x btnc'+(MK.f==x?' on':'')+'" data-mf="'+x+'">'+x+'</button>'}).join('')+(hasMine?'<button class="x btnc'+(MK.f=='mine'?' on':'')+'" data-mf="mine">إعلاناتي</button>':'')+'</div><div id="mkl"><div class="empty">جاري التحميل…</div></div>');
+ fetch(FB()+'/market.json?orderBy=%22t%22&limitToLast=60').then(function(r){return r.json()}).then(function(d){var el=$('mkl');if(!el)return;
+  if(d&&d.error){el.innerHTML='<div class="empty">خطأ من Firebase: '+esc(d.error)+'</div>';return}
+  var now=Date.now();MK.L=Object.keys(d||{}).map(function(k){var m=d[k];if(m&&typeof m=='object')m.id=k;return m}).filter(function(m){return m&&m.p>0&&m.t&&now-m.t<45*864e5}).sort(function(a,b){return b.t-a.t});drawMarket()
+ }).catch(function(){var el=$('mkl');if(el)el.innerHTML='<div class="empty">تعذّر تحميل الإعلانات، تأكد من الإنترنت</div>'})}
+function drawMarket(){var el=$('mkl');if(!el)return;var mine=S.mine||{};
+ var L=MK.L.filter(function(m){return MK.f=='الكل'||(MK.f=='mine'?mine[m.id]:m.m==MK.f)});
+ el.innerHTML=L.map(function(m){return '<div class="card mk" data-mid="'+esc(m.id)+'"><div class="ch"><div class="mth">'+(safeImg(m.th)?'<img src="'+m.th+'" alt="">':'🚗')+'</div><div class="cb"><b>'+esc(mkT(m))+'</b><div class="mp">'+esc(money(m))+'</div><div class="tags"><span class="chip">'+fmt(m.k)+' كم</span><span class="chip">'+esc(m.f)+'</span><span class="chip">📍 '+esc(m.a)+'</span></div></div></div></div>'}).join('')||'<div class="empty">ما كو إعلانات هنا بعد</div>'}
+function mkDetail(id){var m=MK.L.filter(function(x){return x.id==id})[0];if(!m)return;
+ var wa=waLink(m.ph),mine=S.mine&&S.mine[m.id];
+ openS('تفاصيل الإعلان','<div class="mph" id="mph">'+(safeImg(m.th)?'<img src="'+m.th+'" alt="">':'')+'</div><h3 style="margin:6px 0">'+esc(mkT(m))+'</h3><div class="mp" style="font-size:20px">'+esc(money(m))+'</div><div class="tags"><span class="chip">'+fmt(m.k)+' كم</span><span class="chip">'+esc(m.f)+'</span><span class="chip">📍 '+esc(m.a)+'</span></div>'
+ +(m.d?'<div class="card">'+esc(m.d)+'</div>':'')+'<div class="sub">البائع: '+esc(m.n||'—')+' • '+ago(m.t)+'</div>'
+ +'<div class="acts">'+(m.ph?'<a class="act" href="tel:'+esc(m.ph)+'">📞 اتصال</a>':'')+(wa?'<a class="act" target="_blank" rel="noopener" href="'+esc(wa)+'?text='+encodeURIComponent('السلام عليكم، شفت إعلانك على تطبيق كاردكتور كورولا: '+mkT(m))+'">💬 واتساب</a>':'')+'</div>'
+ +'<div class="acts"><button class="act dg" data-rep="'+esc(m.id)+'">⚑ تبليغ</button>'+(mine?'<button class="act dg" data-del="'+esc(m.id)+'">🗑 حذف إعلاني</button>':'')+'</div><button class="x" data-back="1">→ رجوع للسوق</button>');
+ if(m.np>0)fetch(FB()+'/mphotos/'+m.id+'.json').then(function(r){return r.json()}).then(function(a){var el=$('mph');if(!el||!a)return;var arr=(Array.isArray(a)?a:Object.keys(a).map(function(k){return a[k]})).filter(safeImg);if(arr.length)el.innerHTML=arr.map(function(s){return '<img src="'+s+'" alt="">'}).join('')}).catch(function(){})}
+function mkForm(){var yr=new Date().getFullYear();
+ openS('اعرض سيارتك للبيع','<p class="sub">⚠️ بيانات الإعلان ورقمك تظهر لكل مستخدمي التطبيق، والإعلان يبقى 45 يوم. التطبيق وسيط عرض فقط ولا يضمن الصفقات، فتحقق من السيارة والأوراق قبل أي دفع.</p>'
+ +'<label class="lb">الموديل</label><select id="mm"><option>صالون</option><option>كروس</option></select>'
+ +'<label class="lb">الوقود</label><select id="mf"><option>بنزين</option><option>هايبرد</option></select>'
+ +'<label class="lb">سنة الصنع</label><input id="my" type="number" inputmode="numeric" placeholder="مثال: '+(yr-2)+'">'
+ +'<label class="lb">العداد (كم)</label><input id="mk" type="number" inputmode="numeric" value="'+(S.cur||'')+'">'
+ +'<label class="lb">السعر</label><div class="crow"><input id="mpz" type="number" inputmode="numeric" placeholder="السعر"><select id="mc" style="width:120px;margin:0"><option value="usd">دولار $</option><option value="iqd">دينار</option></select></div>'
+ +'<label class="lb">المنطقة</label><input id="ma" maxlength="40" placeholder="مثال: الكرادة">'
+ +'<label class="lb">رقم هاتفك</label><input id="mph2" type="tel" inputmode="tel" maxlength="20" placeholder="07xxxxxxxxx">'
+ +'<label class="lb">اسمك</label><input id="mn" maxlength="30" value="'+esc(S.name||'')+'">'
+ +'<label class="lb">وصف (اختياري)</label><textarea id="md" maxlength="400" rows="3" placeholder="الحالة، الفحص، الملاحظات…"></textarea>'
+ +'<label class="lb">صور (حتى 3)</label><input id="mfi" type="file" accept="image/*" multiple>'
+ +'<div class="err" id="mke"></div><button class="btn" id="mksub">نشر الإعلان</button><button class="x" data-back="1">إلغاء</button>');
+ $('mm').value=S.model||'صالون';$('mf').value=S.fuel||'بنزين'}
+function mkSubmit(){var er=$('mke'),yr=new Date().getFullYear(),y=parseInt(V('my'),10),k=parseInt(V('mk'),10),p=parseInt(V('mpz'),10),ph=V('mph2').replace(/[^\d+]/g,''),a=V('ma').trim();
+ if(!(y>=1990&&y<=yr+1)){er.textContent='اكتب سنة الصنع صحيحة';return}
+ if(!(k>=0)){er.textContent='اكتب العداد';return}
+ if(!(p>0)){er.textContent='اكتب السعر';return}
+ if(!a){er.textContent='اكتب المنطقة';return}
+ if(ph.length<8){er.textContent='اكتب رقم هاتف صحيح';return}
+ var bt=$('mksub');bt.disabled=true;bt.textContent='جاري النشر…';er.textContent='';
+ var id='m'+Date.now().toString(36)+Math.random().toString(36).slice(2,8),sec=Math.random().toString(36).slice(2)+Math.random().toString(36).slice(2)+Date.now().toString(36),
+ fl=Array.prototype.slice.call($('mfi').files,0,3),d=V('md').trim(),
+ rec={m:V('mm'),f:V('mf'),y:y,k:k,p:p,c:V('mc'),a:a.slice(0,40),ph:ph.slice(0,20),n:V('mn').trim().slice(0,30)||'بائع',t:{'.sv':'timestamp'}};
+ if(d)rec.d=d.slice(0,400);
+ function put(path,v){return fetch(FB()+path+'.json',{method:'PUT',body:JSON.stringify(v)}).then(function(r){if(!r.ok)throw 0})}
+ Promise.all([fl.length?shrink(fl[0],280,.6):Promise.resolve('')].concat(fl.map(function(f){return shrink(f,720,.62)}))).then(function(r){
+  if(r[0])rec.th=r[0];var big=r.slice(1);rec.np=big.length;
+  return put('/msec/'+id,sec).then(function(){return big.length?put('/mphotos/'+id,big):0}).then(function(){return put('/market/'+id,rec)})
+ }).then(function(){S.mine=S.mine||{};S.mine[id]=sec;save();MK.f='الكل';openS('تم نشر إعلانك ✅','<div class="card">إعلانك صار ظاهر للناس. تكدر تحذفه بأي وقت من "إعلاناتي".</div><button class="btn" data-back="1">عرض السوق</button>')})
+ .catch(function(){bt.disabled=false;bt.textContent='نشر الإعلان';er.textContent='تعذّر النشر. تأكد من الإنترنت ومن قواعد Firebase، وجرّب صور أصغر.'})}
+function mkReport(key){var r=window.prompt('شنو سبب التبليغ؟ (إعلان مخالف، احتيال، إساءة…)');if(!r)return;S.rep=S.rep||{};if(S.rep[key]){window.alert('بلّغت عنه من قبل');return}
+ fetch(FB()+'/mrep/'+key+'.json',{method:'POST',body:JSON.stringify({r:r.slice(0,100),t:{'.sv':'timestamp'}})}).then(function(x){if(!x.ok)throw 0;S.rep[key]=1;save();window.alert('وصلنا تبليغك، شكراً')}).catch(function(){window.alert('تعذّر إرسال التبليغ')})}
+function mkDelete(id){var sec=(S.mine||{})[id];if(!sec||!window.confirm('تحذف إعلانك؟'))return;
+ fetch(FB()+'/mdel/'+id+'/'+sec+'.json',{method:'PUT',body:'true'}).then(function(r){if(!r.ok)throw 0;return fetch(FB()+'/market/'+id+'.json',{method:'DELETE'})}).then(function(r){if(!r.ok)throw 0;fetch(FB()+'/mphotos/'+id+'.json',{method:'DELETE'});delete S.mine[id];save();marketSheet()}).catch(function(){window.alert('تعذّر الحذف')})}
+$('sBody').addEventListener('click',function(e){var t=e.target,c,ds=t.dataset||{};
+ if(t.id=='mkadd')mkForm();else if(t.id=='mksub')mkSubmit();
+ else if(ds.mf){MK.f=ds.mf;marketSheet()}else if(ds.back)marketSheet();
+ else if(ds.rep)mkReport('m'+ds.rep);else if(ds.crep)mkReport('c'+ds.crep);else if(ds.del)mkDelete(ds.del);
+ else if(t.closest&&(c=t.closest('[data-mid]')))mkDetail(c.dataset.mid)});
+/* ---------- الكماليات ---------- */
+var AC={f:'الكل'};
+function accPhoto(s,i){var p=(s.photos||[])[i];if(!p)return '';return typeof p=='string'?p:(p.u||'')}
+function lightbox(u,c){var o=document.createElement('div');o.className='lbx';o.innerHTML='<button class="lbc">✕</button><img src="'+esc(u)+'" alt=""><div class="lcap">'+esc(c||'')+'</div>';o.onclick=function(){o.remove()};document.body.appendChild(o)}
+function accSheet(){
+ var cats=CONFIG.accCats||['الكل'],L=(CONFIG.accessories||[]).map(function(s,i){s._i=i;return s}).filter(function(s){return AC.f=='الكل'||(s.tags||[]).indexOf(AC.f)>-1});
+ openS('الكماليات','<p class="sub" style="margin-top:0">اضغط على أي محل وشوف صور الكماليات اللي عنده.</p><div class="chips">'+cats.map(function(x){return '<button class="x btnc'+(AC.f==x?' on':'')+'" data-ac="'+esc(x)+'">'+esc(x)+'</button>'}).join('')+'</div>'
+ +(L.map(function(s){var p=accPhoto(s,0);return '<div class="card mk" data-sh="'+s._i+'"><div class="ch"><div class="mth">'+(p?'<img loading="lazy" src="'+esc(p)+'" alt="">':'🛍️')+'</div><div class="cb"><b>'+esc(s.n)+(s.demo?' <span class="chip">مثال</span>':'')+'</b><div class="sub">📍 '+esc(s.a)+' • '+esc(s.spec||'')+'</div><div class="tags">'+(s.tags||[]).map(function(x){return '<span class="chip">'+esc(x)+'</span>'}).join('')+'<span class="chip g">📷 '+((s.photos||[]).length)+' صور</span></div></div></div></div>'}).join('')||'<div class="empty">ما كو محلات بهذا القسم بعد</div>'))}
+function accShop(i){var s=(CONFIG.accessories||[])[i];if(!s)return;var wa=waLink(s.ph),ph=s.photos||[];
+ openS(s.n,'<p class="sub" style="margin-top:0">📍 '+esc(s.a)+(s.hours?' • 🕘 '+esc(s.hours):'')+'</p>'+(s.d?'<div class="card">'+esc(s.d)+'</div>':'')
+ +'<div class="acts">'+(s.ph?'<a class="act" href="tel:'+esc(s.ph)+'">📞 اتصال</a>':'')+(wa?'<a class="act" target="_blank" rel="noopener" href="'+esc(wa)+'">💬 واتساب</a>':'')+'<a class="act" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(s.n+' '+s.a+' بغداد')+'">📍 الموقع</a></div>'
+ +(ph.length?'<div class="gal">'+ph.map(function(p,k){var u=accPhoto(s,k),c=typeof p=='object'?(p.c||''):'';return '<figure data-ph="'+esc(u)+'" data-cap="'+esc(c)+'"><img loading="lazy" src="'+esc(u)+'" alt="'+esc(c||s.n)+'">'+(c?'<figcaption>'+esc(c)+'</figcaption>':'')+'</figure>'}).join('')+'</div>':'<div class="empty">📷 الصور تنضاف قريباً</div>')
+ +'<button class="x" data-accback="1">→ رجوع للكماليات</button>')}
+$('sBody').addEventListener('click',function(e){var t=e.target,ds=t.dataset||{},c;
+ if(ds.ac){AC.f=ds.ac;accSheet()}else if(ds.accback)accSheet();
+ else if(t.closest&&(c=t.closest('[data-sh]')))accShop(+c.dataset.sh);
+ else if(t.closest&&(c=t.closest('[data-ph]')))lightbox(c.dataset.ph,c.dataset.cap)});
 document.querySelectorAll('.tile').forEach(function(b){b.onclick=function(){var k=b.dataset.k;
- if(k=='log')logSheet();else if(k=='diag')diagSheet();else if(k=='shops')listSheet('الورش والمراكز',CONFIG.shops,'🔧');else if(k=='parts')listSheet('قطع الغيار',CONFIG.parts,'⚙️');else if(k=='chat')chatSheet();else faqSheet()}});
+ if(k=='log')logSheet();else if(k=='diag')diagSheet();else if(k=='shops')listSheet('الورش والمراكز',CONFIG.shops,'🔧');else if(k=='parts')listSheet('قطع الغيار',CONFIG.parts,'⚙️');else if(k=='chat')chatSheet();else if(k=='market')marketSheet();else if(k=='acc')accSheet();else faqSheet()}});
 document.querySelectorAll('.nav div').forEach(function(b){b.onclick=function(){var n=b.dataset.n;
  if(n=='home'){shut();window.scrollTo(0,0)}else if(n=='car')carSheet();else if(n=='notif')notifSheet();else if(n=='map')mapSheet();else moreSheet()}});
 
